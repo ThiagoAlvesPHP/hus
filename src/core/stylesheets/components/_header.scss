@@ -1,0 +1,140 @@
+header {
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  background-color: $black-gray;
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: $size_max_width;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    .hamburguer,
+    .close-navbar {
+      display: none;
+      color: $white;
+      margin-left: 10px;
+      font-size: 20px;
+
+      @include responsive($tablet) {
+        display: block;
+      }
+    }
+
+    .logo {
+      font-family: 'HusRegular', sans-serif;
+      font-size: 80px;
+      text-decoration: none;
+      color: $white;
+      letter-spacing: 2px;
+      transition: all ease 0.8s;
+
+      &:hover {
+        color: $orange;
+      }
+    }
+
+    nav {
+      @include responsive($tablet) {
+        position: fixed;
+        left: -100% !important;
+        background-color: rgba(0, 0, 0, .7);
+        height: 100vh;
+        width: 100%;
+        top: 0;
+        left: 0;
+        transition: all ease 0.8s;
+
+        &.active {
+          left: 0 !important;
+        }
+      }
+
+      .close-navbar {
+        @include responsive($tablet) {
+          position: absolute;
+          right: 20px;
+          top: 20px;
+          margin: 0;
+          font-size: $size_title_desktop;
+          cursor: pointer;
+        }
+      }
+
+      ul {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+
+        @include responsive($tablet) {
+          flex-direction: column;
+        }
+
+        li {
+          a {
+            padding: 10px;
+            font-size: 20px;
+            color: $white;
+            text-decoration: none;
+            display: block;
+            transition: all ease 0.8s;
+
+            @include responsive($tablet) {
+              font-size: 25px;
+              letter-spacing: 2px;
+            }
+
+            &:hover {
+              color: $orange;
+            }
+
+            &.active {
+              color: $orange;
+            }
+          }
+        }
+      }
+    }
+
+    ul.social {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      li {
+        a {
+          font-size: 20px;
+          padding: 5px;
+          border: 1px solid $white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          color: $white;
+          transition: all ease 0.8s;
+
+          @include responsive($mobile_small) {
+            font-size: 4vw;
+          }
+
+          &:hover {
+            border-color: $orange;
+            color: $orange;
+          }
+        }
+      }
+
+      .hamburguer {
+        font-size: 30px;
+      }
+    }
+  }
+}

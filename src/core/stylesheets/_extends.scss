@@ -1,0 +1,29 @@
+// CONFIG
+@import "config/colors";
+@import "config/screens";
+@import "config/func";
+@import "config/fonts";
+
+// COMPONENTs
+@import "components/button";
+@import "components/header";
+@import "components/footer";
+
+// CONTAINERs
+// Home
+@import "containers/home/banner";
+@import "containers/home/projects";
+@import "containers/home/releases";
+@import "containers/home/consultants";
+@import "containers/home/about";
+// about
+@import "containers/about/about-top";
+
+// TEMPLATEs
+@import "templates/root";
+
+// VIEWs
+@import "views/home";
+
+// DEFAULT
+@import "index";

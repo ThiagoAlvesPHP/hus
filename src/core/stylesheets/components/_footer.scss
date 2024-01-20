@@ -1,0 +1,158 @@
+footer {
+  background-color: $black-gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0 10px;
+  color: $white;
+
+  .container {
+    max-width: $size_max_width;
+    width: 100%;
+    padding: 0 20px;
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 60px;
+
+      @include responsive($tablet) {
+        grid-template-columns: 1fr;
+      }
+
+      .column-primary {
+        @include responsive($tablet) {
+          border-bottom: 1px solid $gray;
+          padding-bottom: 15px;
+        }
+
+        h2.title {
+          font-size: $size_title_desktop;
+          color: $white;
+          margin: 0;
+          font-family: 'HusRegular', sans-serif;
+          font-weight: 300;
+
+          @include responsive($tablet) {
+            font-size: $size_title_mobile;
+            text-align: center;
+          }
+        }
+
+        p.sub-title {
+          color: $gray;
+
+          @include responsive($tablet) {
+            text-align: center;
+          }
+        }
+
+        .social-links {
+          display: flex;
+          gap: 25px;
+
+          @include responsive($tablet) {
+            justify-content: center;
+          }
+
+          .social-follow {
+            color: $white;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all ease .8s;
+
+            svg {
+              transition: all ease .8s;
+            }
+
+            &:hover {
+              svg {
+                transform: scale(1.08);
+              }
+            }
+          }
+        }
+      }
+
+      .column-secondy {
+        @include responsive($tablet) {
+          border-bottom: 1px solid $gray;
+          padding-bottom: 15px;
+        }
+
+        h2.title {
+          color: $orange;
+          margin: 0;
+          font-size: $size_default;
+
+          @include responsive($tablet) {
+            text-align: center;
+          }
+        }
+
+        ul {
+          margin: 25px 0;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          li {
+            a {
+              font-size: $size_default;
+              color: $white;
+              text-decoration: none;
+              transition: ease all .8s;
+
+              &:hover {
+                color: $gray;
+              }
+            }
+          }
+        }
+      }
+
+      .column-third {
+        h2.title {
+          color: $orange;
+          margin: 0;
+          font-size: $size_default;
+
+          @include responsive($tablet) {
+            text-align: center;
+          }
+        }
+
+        ul {
+          margin: 25px 0;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          li {
+            display: flex;
+            gap: 8px;
+
+            svg {
+              color: $orange;
+            }
+          }
+        }
+      }
+    }
+
+    .copytight {
+      border-top: 1px solid $gray;
+      padding-top: 15px;
+      margin: 0;
+      color: $gray;
+      display: flex;
+      justify-content: space-between;
+
+      a {
+        color: $gray;
+        text-decoration: none;
+      }
+    }
+  }
+}

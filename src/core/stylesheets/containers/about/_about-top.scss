@@ -1,0 +1,14 @@
+.about-top {
+  padding: 120px 0;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    padding: 0 20px;
+    max-width: $size_max_width;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+  }
+}

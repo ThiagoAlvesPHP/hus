@@ -1,0 +1,5 @@
+@mixin responsive($target) {
+  @media #{$target} {
+    @content;
+  }
+}
