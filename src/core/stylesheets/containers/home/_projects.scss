@@ -50,6 +50,7 @@
                 justify-content: end;
                 background-size: cover;
                 background-position: center;
+                text-decoration: none;
 
                 .content {
                   padding: 10px $size_title_desktop;
@@ -68,10 +69,11 @@
               }
             }
 
-            &.slick-active:nth-child(2) {
+            &.slick-slide:nth-child(2) {
               .carousel-item {
                 .item {
                   height: 350px;
+                  transform: scale(1.3);
                 }
               }
             }
@@ -87,22 +89,19 @@
             transition: all ease .8s;
 
             &::before {
-              background-color: $green;
-              border-radius: 50%;
-              color: unset;
+              color: $green;
               opacity: 1;
-              transition: all ease .8s;
-              font-size: 15px;
+              font-size: 16px;
+              border: 1px solid transparent;
+              padding: 2px;
+              border-radius: 50%;
+              transition: all ease 0.8s;
             }
-
+            
             &:hover {
               &::before {
-                background-color: unset;
-                border: 1px solid $green;
-                color: $green;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                // border-color: $green;
+                transform: scale(0.7);
               }
             }
           }
@@ -110,12 +109,8 @@
           &.slick-active {
             button {
               &::before {
-                background-color: unset;
-                border: 1px solid $green;
-                color: $green;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                border-color: $green;
+                transform: scale(0.7);
               }
             }
           }
