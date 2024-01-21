@@ -10,5 +10,58 @@
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     gap: 20px;
+
+    @include responsive($desktop_small) {
+      grid-template-columns: 1fr;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+
+      @include responsive($desktop_small) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      @include responsive($tablet) {
+        grid-template-columns: 1fr;
+      }
+
+      &:first-child {
+        .item {
+
+          p.sub-title,
+          h1 {
+            margin: 0;
+            color: $orange;
+          }
+
+          h1 {
+            font-size: $size_title_desktop;
+            margin-top: 15px;
+          }
+
+          p.text {
+            color: $gray;
+            max-width: 470px;
+            margin-bottom: 30px;
+          }
+
+          .division {
+            border: 1px solid $orange;
+            max-width: 60px;
+            margin-bottom: 60px;
+          }
+        }
+      }
+    }
   }
 }

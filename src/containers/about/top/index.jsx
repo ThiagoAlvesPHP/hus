@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
-
 // IMG
 import image01 from "../../../assets/images/about/image_01.png";
 import image02 from "../../../assets/images/about/image_02.png";

@@ -3,7 +3,8 @@ header {
   position: fixed;
   width: 100%;
   z-index: 10;
-  background-color: $black-gray;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
 
   .content {
     display: flex;
@@ -126,8 +127,12 @@ header {
           }
 
           &:hover {
-            border-color: $orange;
-            color: $orange;
+            opacity: .7;
+          }
+
+          .social-img{
+            width: 15px;
+            height: 15px;
           }
         }
       }
