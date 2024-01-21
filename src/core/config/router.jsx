@@ -10,6 +10,8 @@ import { Root } from "../../template/root";
 // VIEWs
 import { ViewHome } from "../../views/home";
 import { ViewAbout } from "../../views/about";
+import { ViewEnterprises } from "../../views/enterprises";
+import { ViewProject } from "../../views/project";
 
 const browserRouter = createBrowserRouter([
   {
@@ -26,7 +28,11 @@ const browserRouter = createBrowserRouter([
       },
       {
         path: "empreendimentos",
-        element: <ViewHome />
+        element: <ViewEnterprises />
+      },
+      {
+        path: "projeto",
+        element: <ViewProject />
       },
       {
         path: "contato",

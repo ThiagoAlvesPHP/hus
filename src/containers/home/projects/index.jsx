@@ -26,14 +26,12 @@ export function HomeProjects(props) {
   function getJson() {
     let json = [];
 
-    // if (props.projects) {
-    //   props.projects.forEach(el => {
-    //     json.push({ "image": el.imagem, "location": el.cidade_uf, items: el.itens })
-    //   });
-    // }
-
-    for (let i = 0; i < 4; i++) {
-      json.push({ "image": projects, "location": "Gaspar - SC", "quantity": "2 Dormitórios", "square_size": "60m²" })
+    if (props.projects) {
+      props.projects.forEach(el => {
+        if (el.recentes) {
+          json.push(el)
+        }
+      });
     }
 
     setJson(json);
@@ -41,16 +39,16 @@ export function HomeProjects(props) {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: json.length >= 3 ? true : false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: json.length >= 3 ? 3 : 1,
     slidesToScroll: 1,
     className: "carousel",
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: json.length >= 2 ? true : false,
           slidesToScroll: 2,
           infinite: true,
           dots: true
@@ -75,12 +73,14 @@ export function HomeProjects(props) {
         <Slider {...settings}>
           {json.map((item, index) => (
             <div key={index} className="carousel-item">
-              <Link className="item" to="project" style={{ backgroundImage: `url(${item.image})` }}>
+              <Link className="item" to="project" style={{ backgroundImage: `url(${item.imagem})` }}>
                 <div className="content">
-                  <p><FaLocationDot /> {item.location}</p>
+                  <p className="location"><FaLocationDot /> {item.cidade_uf}</p>
 
-                  <p><IoBedSharp /> {item.quantity}</p>
-                  <p><FaRulerCombined /> {item.square_size}</p>
+                  {item.items.map((el, index) => (
+                    index < 2 &&
+                    <p key={index}><img src={el.icone} alt="Icone" /> {el.item}</p>
+                  ))}
                 </div>
               </Link>
             </div>

@@ -32,6 +32,11 @@ export function LayoutHeader() {
     setMenuOpen(!menuOpen);
   };
 
+  const handleMenuActive = (index) => {
+    setMenuActive(index);
+    handleToggleMenu();
+  }
+
   return (
     <header>
       <div className="content">
@@ -44,7 +49,7 @@ export function LayoutHeader() {
           <ul>
             {menu.map((item, index) => (
               <li key={index}>
-                <Link className={menuActive === index ? "active" : ""} onClick={() => setMenuActive(index)} to={item.url}>
+                <Link className={menuActive === index ? "active" : ""} onClick={() => handleMenuActive(index)} to={item.url}>
                   {item.title}
                 </Link>
               </li>

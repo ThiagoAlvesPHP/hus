@@ -7,7 +7,7 @@ import { HomeAbout } from "../../containers/home/about";
 import { useState, useEffect } from "react";
 
 // SERVICEs
-import { getAllAcf, getAllAcfFind, getAllWP, getAllWPFind } from "../../core/services/Api";
+import { getAllAcfFind } from "../../core/services/Api";
 
 export function ViewHome() {
   const [data, setData] = useState([]);
@@ -28,10 +28,7 @@ export function ViewHome() {
     if (projects && projects.data.acf) {
       setDataProjects(projects.data.acf);
     }
-    // console.log(projects);
   };
-
-  // console.log(data_projects);
 
   return (
     <main>
