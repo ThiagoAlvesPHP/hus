@@ -12,6 +12,7 @@ import { ViewHome } from "../../views/home";
 import { ViewAbout } from "../../views/about";
 import { ViewEnterprises } from "../../views/enterprises";
 import { ViewProject } from "../../views/project";
+import { ViewContact } from "../../views/contact";
 
 const browserRouter = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const browserRouter = createBrowserRouter([
       },
       {
         path: "contato",
-        element: <ViewHome />
+        element: <ViewContact />
       },
     ]
   }

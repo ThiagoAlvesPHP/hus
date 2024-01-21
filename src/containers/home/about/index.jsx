@@ -24,7 +24,7 @@ export function HomeAbout() {
 
             <div className="division"></div>
 
-            <Link className="link">
+            <Link className="link" to="/sobre">
               Saiba mais
             </Link>
           </div>

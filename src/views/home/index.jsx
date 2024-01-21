@@ -34,7 +34,7 @@ export function ViewHome() {
     <main>
       <HomeBanner data={data.banner} />
       <HomeProjects data={data.projetos_recentes} projects={data_projects.projetos} />
-      <HomeReleases />
+      <HomeReleases projects={data_projects.projetos} />
       <HomeConsultants />
       <HomeAbout />
     </main>

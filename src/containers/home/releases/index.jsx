@@ -1,29 +1,36 @@
-import { FaRulerCombined } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import Slider from "react-slick";
 import { Link } from "react-router-dom";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // IMG
 import releases from "../../../assets/images/releases.png";
+import background from "../../../assets/images/about/background.png";
 
-export function HomeReleases() {
+export function HomeReleases(props) {
   const [json, setJson] = useState([]);
+  const [project, saveProject] = useLocalStorage("project");
 
   useEffect(() => {
-    getJson()
-  }, []);
+    getJson();
+  }, [props.projects]);
 
+  async function getJson() {
+    var array = [];
 
-  function getJson() {
-    let json = [];
+    if (props.projects && props.projects.length > 0) {
+      props.projects.forEach(el => {
+        if (el.lancamentos) {
+          array.push(el);
+          console.log(el);
+        }
+      });
 
-    for (let i = 0; i < 4; i++) {
-      json.push({ "name": "Nome do empreendimento", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id molestie dolor. Phasellus eget bibendum. Etiam pretium feugiat elit, vitae vehicula metus accumsan sit amet. ", "list": [{ "item": "Lorem ipsum dolor" }, { "item": "Lorem ipsum dolor" }, { "item": "Lorem ipsum dolor" }, { "item": "Lorem ipsum dolor" }], "image": releases, "location": "Gaspar - SC", "quantity": "2 Dormitórios", "square_size": "60m²" })
+      setJson(array);
     }
-    setJson(json);
   }
 
   const settings = {
@@ -36,36 +43,42 @@ export function HomeReleases() {
   };
 
   return (
-    <section className="releases">
+    <section className="releases" style={{ backgroundImage: `url(${background})` }}>
       <div className="container">
         <h2 className="title">Próximos lançamentos</h2>
         <p className="sub-title">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 
         <Slider {...settings}>
-          {json.map((item, index) => (
-            <div key={index} className="carousel-item">
-              <div className="item" style={{ backgroundImage: `url(${item.image})` }}>
-                <div className="content">
-                  <p className="location">{item.location}</p>
+          {json && json.length && (
+            json.map((item, index) => (
+              <div key={index} className="carousel-item">
+                <div className="item" style={{ backgroundImage: `url(${item.imagem})` }}>
+                  <div className="content">
+                    <p className="location">{item.cidade_uf}</p>
 
-                  <div className="block">
-                    <p className="title"><span>Lorem</span> Ipsum</p>
-                    <p><FaRulerCombined /> {item.square_size}</p>
+                    <div className="block">
+                      <p className="title">{item.titulo}</p>
+                      {item.items.map((el, index) => (
+                        index < 1 &&
+                        <p key={index}><img src={el.icone} alt="Icone" /> {el.item}</p>
+                      ))}
+                    </div>
                   </div>
                 </div>
+                <div className="content">
+                  <p className="title">{item.titulo}</p>
+                  <p className="description">{item.texto}</p>
+                  <ul>
+                    {item.items.map((el, index) => (
+                        index > 1 &&
+                        <li key={index}>{el.item}</li>
+                      ))}
+                  </ul>
+                  <Link className="link" to="/projeto" onClick={() => saveProject(item)}>Saiba mais</Link>
+                </div>
               </div>
-              <div className="content">
-                <p className="title">{item.name}</p>
-                <p className="description">{item.description}</p>
-                <ul>
-                  {item.list.map((item, index) => (
-                    <li key={index}>{item.item}</li>
-                  ))}
-                </ul>
-                <Link className="link" to="">Saiba mais</Link>
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </Slider>
       </div>
     </section>
