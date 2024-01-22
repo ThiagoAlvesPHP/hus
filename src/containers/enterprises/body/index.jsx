@@ -5,13 +5,14 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 // SERVICEs
-import { getAllAcf, getAllAcfFind } from "../../../core/services/Api";
+import { getAllAcfFind } from "../../../core/services/Api";
 
 const limitItems = 9;
 const limitDots = 3;
 
 export function EnterprisesBody() {
   const [json, setJson] = useState([]);
+  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [items, setItems] = useState([]);
   const [project, saveProject] = useLocalStorage("project");
@@ -28,13 +29,11 @@ export function EnterprisesBody() {
 
   async function getJson() {
     let json = [];
-
     // let data = await getAllAcf();
     let result = await getAllAcfFind(56);
-
     if (result && result.data) {
       let params = result.data.acf.projetos;
-
+      setData(result.data.acf.topo);
       params.forEach(el => {
         json.push(el)
       });
@@ -74,8 +73,8 @@ export function EnterprisesBody() {
   return (
     <section className="enterprises-body">
       <div className="container">
-        <p className="sub-title">What is Lorem Ipsum</p>
-        <h1 className="title">Empreendimentos</h1>
+        <p className="sub-title">{data && data.sub_titulo && data.sub_titulo}</p>
+        <h1 className="title">{data && data.titulo && data.titulo}</h1>
 
         <div className="content">
           {items.map((item, index) => (

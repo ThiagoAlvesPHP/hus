@@ -1,29 +1,36 @@
 import { Link } from "react-router-dom";
 import { FaInstagram, FaFacebook, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
-// IMG
-import homeabout from "../../../assets/images/home-about.png";
-import lines from "../../../assets/images/home-about-lines.png";
-import aboutsocial from "../../../assets/images/about-social.png";
+export function HomeAbout(props) {
+  const sobre_nos_titulo = props.sobre_nos ? props.sobre_nos.titulo : "";
+  const sobre_nos_sub_titulo = props.sobre_nos ? props.sobre_nos.sub_titulo : "";
+  const sobre_nos_descricao = props.sobre_nos ? props.sobre_nos.descricao : "";
+  const sobre_nos_imagem_principal = props.sobre_nos ? props.sobre_nos.imagem_principal : "";
+  const sobre_nos_imagem_secundaria = props.sobre_nos ? props.sobre_nos.imagem_secundaria : "";
+  const sobre_nos_galeria = props.sobre_nos ? props.sobre_nos.galeria : "";
+  const sobre_nos_link_instagram = props.sobre_nos ? props.sobre_nos.link_instagram : "";
 
-export function HomeAbout() {
+  const siga_nos_titulo = props.sobre_nos ? props.siga_nos.sobre_nos_titulo : "";
+  const siga_nos_sub_titulo = props.sobre_nos ? props.siga_nos.sobre_nos_sub_titulo : "";
+
+  const newsletter_titulo = props.sobre_nos ? props.siga_nos.newsletter_titulo : "";
+  const newsletter_sub_titulo = props.sobre_nos ? props.siga_nos.newsletter_sub_titulo : "";
+
+  const links_extras = props.links ? props.links.extras : "";
 
   return (
     <section className="about">
       <div className="container">
         <div className="about-text-banner">
           <div className="img">
-            <img src={homeabout} className="about-img" alt="Image" />
-            <img src={lines} className="lines-img" alt="Image" />
+            <img src={sobre_nos_imagem_principal} className="about-img" alt="Image" />
+            <img src={sobre_nos_imagem_secundaria} className="lines-img" alt="Image" />
           </div>
           <div className="content">
-            <p className="title">Sobre nós</p>
-            <p className="sub-title">.Design .Conforto .Viver Bem</p>
-            <p className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra vestibulum ipsum, id sagittis metus accumsan vitae. Nulla placerat elementum lectus eget tempus. Suspendisse consectetur, purus non consectetur hendrerit, mi ante tempor neque, nec varius sapien orci a ipsum. Proin scelerisque aliquet aliquam.</p>
-            <p className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra vestibulum ipsum, id sagittis metus accumsan vitae. Nulla placerat elementum lectus eget tempus. Suspendisse consectetur, purus non consectetur hendrerit, mi ante tempor neque, nec varius sapien orci a ipsum. Proin scelerisque aliquet aliquam.</p>
-
+            <p className="title">{sobre_nos_titulo}</p>
+            <p className="sub-title">{sobre_nos_sub_titulo}</p>
+            <p className="text" dangerouslySetInnerHTML={{ __html: sobre_nos_descricao ?? "" }}></p>
             <div className="division"></div>
-
             <Link className="link" to="/sobre">
               Saiba mais
             </Link>
@@ -32,50 +39,32 @@ export function HomeAbout() {
 
         <div className="about-social">
           <div className="cards">
-            <div className="card">
-              <img src={aboutsocial} className="about-social" alt="Image" />
-            </div>
-            <div className="card">
-              <img src={aboutsocial} className="about-social" alt="Image" />
-            </div>
-            <div className="card">
-              <img src={aboutsocial} className="about-social" alt="Image" />
-            </div>
-            <div className="card">
-              <img src={aboutsocial} className="about-social" alt="Image" />
-            </div>
+            {sobre_nos_galeria && sobre_nos_galeria.length > 0 &&
+              sobre_nos_galeria.map((el, index) => (
+                <div key={index} className="card" style={{ backgroundImage: `url(${el})` }}></div>
+              ))}
           </div>
-
-          <Link to="" className="link"><FaInstagram /> Instagram</Link>
+          <Link to={sobre_nos_link_instagram} target="_blank" className="link"><FaInstagram /> Instagram</Link>
         </div>
 
         <div className="about-follow-us">
-          <h2 className="title">Siga-nos</h2>
-          <p className="sub-title">Fique por dentro de tudo em nossas redes sociais</p>
+          <h2 className="title">{siga_nos_titulo}</h2>
+          <p className="sub-title">{siga_nos_sub_titulo}</p>
 
           <div className="content">
-            <Link to="" className="social-follow">
-              <FaFacebook className="icon" />
-              Facebook
-            </Link>
-            <Link to="" className="social-follow">
-              <FaInstagram className="icon" />
-              Instagram
-            </Link>
-            <Link to="" className="social-follow">
-              <FaTwitter className="icon" />
-              Twitter
-            </Link>
-            <Link to="" className="social-follow">
-              <FaLinkedinIn className="icon" />
-              Linkedin
-            </Link>
+            {links_extras && links_extras.length > 0 &&
+              links_extras.map((el, index) => (
+                <Link key={index} to={el.link} target="_blank" className="social-follow">
+                  <img src={el.icone} alt={el.titulo} className="icone" />
+                  {el.titulo}
+                </Link>
+              ))}
           </div>
         </div>
 
         <div className="newsletter">
-          <h2 className="title">Newsletter</h2>
-          <p className="sub-title">Inscreva-se e receba todas as novidades</p>
+          <h2 className="title">{newsletter_titulo}</h2>
+          <p className="sub-title">{newsletter_sub_titulo}</p>
 
           <div className="form">
             <input type="text" placeholder="Nome completo" className="input" required />
@@ -86,7 +75,7 @@ export function HomeAbout() {
             </label>
             <button className="action">Cadastrar-se</button>
           </div>
-          <Link to="" className="link">Política de Privacidade</Link>
+          <Link to="/politicade-de-privacidade" className="link">Política de Privacidade</Link>
         </div>
       </div>
     </section>

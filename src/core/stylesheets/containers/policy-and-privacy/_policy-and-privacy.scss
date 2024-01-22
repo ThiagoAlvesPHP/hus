@@ -1,0 +1,18 @@
+.policy-and-privacy {
+  padding: 140px 0;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    padding: 0 20px;
+    max-width: $size_max_width;
+    width: 100%;
+
+    h1 {
+      margin: 0;
+      color: $orange;
+      font-size: $size_title_desktop;
+      margin-bottom: 60px;
+    }
+  }
+}

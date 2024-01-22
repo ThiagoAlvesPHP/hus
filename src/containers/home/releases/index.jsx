@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // IMG
-import releases from "../../../assets/images/releases.png";
 import background from "../../../assets/images/about/background.png";
 
 export function HomeReleases(props) {
@@ -25,7 +24,6 @@ export function HomeReleases(props) {
       props.projects.forEach(el => {
         if (el.lancamentos) {
           array.push(el);
-          console.log(el);
         }
       });
 

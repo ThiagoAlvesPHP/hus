@@ -13,6 +13,7 @@ import { ViewAbout } from "../../views/about";
 import { ViewEnterprises } from "../../views/enterprises";
 import { ViewProject } from "../../views/project";
 import { ViewContact } from "../../views/contact";
+import { ViewPolicyAndPrivacy } from "../../views/policyandprivacy";
 
 const browserRouter = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const browserRouter = createBrowserRouter([
       {
         path: "contato",
         element: <ViewContact />
+      },
+      {
+        path: "politicade-de-privacidade",
+        element: <ViewPolicyAndPrivacy />
       },
     ]
   }

@@ -1,19 +1,16 @@
 import { useState, useEffect } from "react";
 import { FaLocationDot } from "react-icons/fa6";
-import { IoBedSharp } from "react-icons/io5";
-import { FaRulerCombined } from "react-icons/fa";
-import Slider from "react-slick";
 import { Link } from "react-router-dom";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// IMG
-import projects from "../../../assets/images/projects.png";
-
 export function HomeProjects(props) {
   const [json, setJson] = useState([]);
-
+  const [project, saveProject] = useLocalStorage("project");
+  
   const titulo = props.data ? props.data.titulo : "";
   const sub_titulo = props.data ? props.data.sub_titulo : "";
   const texto = props.data ? props.data.texto : "";
@@ -73,7 +70,7 @@ export function HomeProjects(props) {
         <Slider {...settings}>
           {json.map((item, index) => (
             <div key={index} className="carousel-item">
-              <Link className="item" to="project" style={{ backgroundImage: `url(${item.imagem})` }}>
+              <Link className="item" to="/projeto" onClick={() => saveProject(item)} style={{ backgroundImage: `url(${item.imagem})` }}>
                 <div className="content">
                   <p className="location"><FaLocationDot /> {item.cidade_uf}</p>
 
