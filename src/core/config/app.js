@@ -2,7 +2,7 @@ const config = {
   development: {
     path: "/",
     baseUrl: `http://localhost:${window.location.port}`,
-    requestUrl: "http://localhost/WP/hus/wp-json/",
+    requestUrl: "https://wordpress.ltdeveloper.com.br/wp-json/",
   },
   production: {
     path: "/projects/hus/",

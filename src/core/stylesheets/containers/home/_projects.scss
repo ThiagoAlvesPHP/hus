@@ -26,6 +26,7 @@
     p.sub-title {
       text-align: center;
       margin: 20px 0 60px;
+      color: $gray;
     }
 
     .carousel {
@@ -97,10 +98,9 @@
               border-radius: 50%;
               transition: all ease 0.8s;
             }
-            
+
             &:hover {
               &::before {
-                // border-color: $green;
                 transform: scale(0.7);
               }
             }
@@ -120,8 +120,20 @@
 
 
     h2.text-secondy {
+      font-family: 'Archivo', sans-serif;
       margin: 120px 0 0;
       text-transform: lowercase;
+      letter-spacing: 2px;
+      color: $white;
+      text-shadow:
+        -1px -1px 0 $orange,
+        1px -1px 0 $orange,
+        -1px 1px 0 $orange,
+        1px 1px 0 $orange;
+
+      @include responsive($tablet) {
+        font-size: 40px;
+      }
     }
   }
 }

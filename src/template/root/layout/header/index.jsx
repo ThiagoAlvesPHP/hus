@@ -1,13 +1,17 @@
 import { FaRegWindowClose } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import { getScrollTop } from "../../../../core/data/app-reducer/selectors";
 
 //SERVICEs
 import { getMenu, getAllAcfFind } from "../../../../core/services/Api";
 import { Loading } from "../../../../components/Loading";
 
 export function LayoutHeader() {
+  const scrollTop = useSelector(getScrollTop);
+  const linkRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menu, setMenu] = useState([]);
   const [menuActive, setMenuActive] = useState(0);
@@ -17,6 +21,10 @@ export function LayoutHeader() {
   useEffect(() => {
     request();
   }, []);
+
+  useEffect(() => {
+    linkRef.current.style.fontSize = (scrollTop >= 80) ? '120px' : '80px';
+  }, [scrollTop])
 
   const request = async () => {
     let listMenu = await getMenu();
@@ -43,7 +51,7 @@ export function LayoutHeader() {
   return (
     <header>
       <div className="content">
-        <Link to="/" className="logo" onClick={() => setMenuActive(0)}>
+        <Link to="/" ref={linkRef} className="logo" onClick={() => setMenuActive(0)}>
           HUS
         </Link>
 
