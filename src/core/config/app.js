@@ -7,7 +7,7 @@ const config = {
   production: {
     path: "/projects/hus/",
     baseUrl: "https://ltdeveloper.com.br",
-    requestUrl: "/",
+    requestUrl: "https://wordpress.ltdeveloper.com.br/wp-json/",
   },
 };
 

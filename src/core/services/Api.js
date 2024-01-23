@@ -46,7 +46,7 @@ export const getAllWP = async () => {
 
 export const getAllWPFind = async (id) => {
   try {
-    const req = await apiDash.get(`wp/v2/pages${id}`);
+    const req = await apiDash.get(`wp/v2/pages/${id}`);
     return req;
   } catch (err) {
     console.error(err);

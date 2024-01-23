@@ -5,12 +5,14 @@ import { useState, useEffect } from "react";
 
 //SERVICEs
 import { getMenu, getAllAcfFind } from "../../../../core/services/Api";
+import { Loading } from "../../../../components/Loading";
 
 export function LayoutHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menu, setMenu] = useState([]);
   const [menuActive, setMenuActive] = useState(0);
   const [social, setSocial] = useState([]);
+  const [removeLoader, setRemoveLoader] = useState(true);
 
   useEffect(() => {
     request();
@@ -25,6 +27,7 @@ export function LayoutHeader() {
     let listLinks = await getAllAcfFind(92);
     if (listLinks.data && listLinks.data.acf.links.extras) {
       setSocial(listLinks.data.acf.links.extras);
+      setRemoveLoader(false);
     }
   }
 
@@ -70,6 +73,8 @@ export function LayoutHeader() {
           </li>
         </ul>
       </div>
+
+      <Loading removeLoader={removeLoader} />
     </header>
   );
 }

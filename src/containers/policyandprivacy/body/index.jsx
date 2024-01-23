@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // SERVICEs
-import { getAllWP } from "../../../core/services/Api";
+import { getAllWP, getAllWPFind } from "../../../core/services/Api";
 
 export function PolicyAndPrivacyBody() {
   const [data, setData] = useState([]);
@@ -10,17 +10,20 @@ export function PolicyAndPrivacyBody() {
     get();
   }, []);
 
-  async function get(){
-    let result = await getAllWP();
-    setData(result.data[1]);
+  async function get() {
+    let result = await getAllWPFind(128);
+    if (result && result.data) {
+      console.log(result.data);
+      setData(result.data);
+    }
   }
-  
+
   return (
     <section className="policy-and-privacy">
       <div className="container">
-        <h1 className="title">{data && data.title.rendered && data.title.rendered}</h1>
+        <h1 className="title">{data && data.title && data.title.rendered}</h1>
         <div className="content">
-          <div className="text" dangerouslySetInnerHTML={{ __html: data && data.content.rendered && data.content.rendered }} />
+          <div className="text" dangerouslySetInnerHTML={{ __html: data && data.content && data.content.rendered }} />
         </div>
       </div>
     </section>
