@@ -50,7 +50,7 @@ export function LayoutFooter() {
             <ul>
               {menus &&
                 menus.map((el, index) => (
-                  <li>
+                  <li key={index}>
                     <Link key={index} to={el.url}>{el.title}</Link>
                   </li>
                 ))}

@@ -23,7 +23,7 @@ export function HomeProjects(props) {
   useEffect(() => {
     if (json.length > 0) {
       const slickActiveItems = document.querySelectorAll('.slick-slide.slick-active');
-      slickActiveItems[1].classList.add('item-active');
+      slickActiveItems[1].querySelector(".carousel-item").classList.add('item-active');
     }
   }, [secondElementIndex, json]);
 
