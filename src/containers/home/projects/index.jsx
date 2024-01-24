@@ -10,15 +10,22 @@ import "slick-carousel/slick/slick-theme.css";
 export function HomeProjects(props) {
   const [json, setJson] = useState([]);
   const [project, saveProject] = useLocalStorage("project");
-  
+  const [secondElementIndex, setSecondElementIndex] = useState(null);
+
   const titulo = props.data ? props.data.titulo : "";
   const sub_titulo = props.data ? props.data.sub_titulo : "";
   const texto = props.data ? props.data.texto : "";
 
   useEffect(() => {
-    getJson()
+    getJson();
   }, [props.projects]);
 
+  useEffect(() => {
+    if (json.length > 0) {
+      const slickActiveItems = document.querySelectorAll('.slick-slide.slick-active');
+      slickActiveItems[1].classList.add('item-active');
+    }
+  }, [secondElementIndex, json]);
 
   function getJson() {
     let json = [];
@@ -32,7 +39,28 @@ export function HomeProjects(props) {
     }
 
     setJson(json);
+
+    if (json.length >= 3) {
+      setSecondElementIndex(1);
+    }
   }
+
+  const handleBeforeChange = () => {
+    document.querySelectorAll('.item-active').forEach(element => {
+      element.classList.remove('item-active');
+    });
+
+    setSecondElementIndex(Math.floor(Math.random() * 2000));
+  }
+
+  const handleAfterChange = (currentIndex) => {
+    // // Remova a classe de todos os elementos antes de adicionar à próxima
+    document.querySelectorAll('.item-active').forEach(element => {
+      element.classList.remove('item-active');
+    });
+
+    setSecondElementIndex(Math.floor(Math.random() * 2000));
+  };
 
   const settings = {
     dots: true,
@@ -41,6 +69,8 @@ export function HomeProjects(props) {
     slidesToShow: json.length >= 3 ? 3 : 1,
     slidesToScroll: 1,
     className: "carousel",
+    beforeChange: handleBeforeChange,
+    afterChange: handleAfterChange,
     responsive: [
       {
         breakpoint: 1024,

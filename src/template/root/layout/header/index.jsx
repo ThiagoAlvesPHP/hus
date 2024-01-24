@@ -23,7 +23,7 @@ export function LayoutHeader() {
   }, []);
 
   useEffect(() => {
-    linkRef.current.style.fontSize = (scrollTop >= 80) ? '120px' : '80px';
+    linkRef.current.style.fontSize = (scrollTop <= 80) ? '120px' : '80px';
   }, [scrollTop])
 
   const request = async () => {

@@ -10,7 +10,7 @@ const apiDash = axios.create({
 
 export const getMenu = async () => {
   try {
-    const req = await apiDash.get(`menus/v1/menus/menu`);
+    const req = await apiDash.get(`wp-json/menus/v1/menus/menu`);
     return req;
   } catch (err) {
     console.error(err);
@@ -19,7 +19,7 @@ export const getMenu = async () => {
 
 export const getAllAcf = async () => {
   try {
-    const req = await apiDash.get(`acf/v3/pages`);
+    const req = await apiDash.get(`wp-json/acf/v3/pages`);
     return req;
   } catch (err) {
     console.error(err);
@@ -28,7 +28,7 @@ export const getAllAcf = async () => {
 
 export const getAllAcfFind = async (id) => {
   try {
-    const req = await apiDash.get(`acf/v3/pages/${id}`);
+    const req = await apiDash.get(`wp-json/acf/v3/pages/${id}`);
     return req;
   } catch (err) {
     console.error(err);
@@ -37,7 +37,7 @@ export const getAllAcfFind = async (id) => {
 
 export const getAllWP = async () => {
   try {
-    const req = await apiDash.get(`wp/v2/pages`);
+    const req = await apiDash.get(`wp-json/wp/v2/pages`);
     return req;
   } catch (err) {
     console.error(err);
@@ -46,9 +46,19 @@ export const getAllWP = async () => {
 
 export const getAllWPFind = async (id) => {
   try {
-    const req = await apiDash.get(`wp/v2/pages/${id}`);
+    const req = await apiDash.get(`wp-json/wp/v2/pages/${id}`);
     return req;
   } catch (err) {
     console.error(err);
   }
 }
+
+export const sendContact = async (params) => {
+  try {
+    // Passa os parâmetros no corpo da requisição
+    const req = await apiDash.post('send-contact.php', params);
+    return req;
+  } catch (err) {
+    console.error(err);
+  }
+};
