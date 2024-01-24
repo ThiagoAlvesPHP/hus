@@ -38,7 +38,8 @@ export function ContactBody() {
     const missingFields = requiredFields.filter(field => !formData[field]);
 
     if (missingFields.length > 0) {
-      toast.error("Campos obrigatórios não preenchidos:" + missingFields, { closeOnClick: true });
+      toast.error("Campos obrigatórios não preenchidos:", { closeOnClick: true });
+      return;
     }
 
     let res = await sendContact(formData);
@@ -46,7 +47,6 @@ export function ContactBody() {
       toast.success("E-mail enviado com sucesso!", { closeOnClick: true });
     }
   };
-
 
   useEffect(() => {
     getReq();

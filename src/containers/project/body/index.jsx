@@ -6,19 +6,51 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // SERVICEs
-import { getAllAcf, getAllAcfFind } from "../../../core/services/Api";
-
+import { sendContact } from "../../../core/services/Api";
 
 export function ProjectBody() {
   const [project] = useLocalStorage("project");
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    enterprises: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const requiredFields = ['name', 'email', 'phone', 'enterprises', 'message'];
+    const missingFields = requiredFields.filter(field => !formData[field]);
+
+    if (missingFields.length > 0) {
+      toast.error("Campos obrigatórios não preenchidos", { closeOnClick: true });
+      return;
+    }
+
+    let res = await sendContact(formData);
+    if (res && res.data.email) {
+      toast.success("E-mail enviado com sucesso!", { closeOnClick: true });
+    }
+  };
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: project.galeria.length >= 3 ? true : false,
     speed: 500,
     slidesToShow: project.galeria.length >= 3 ? 3 : 1,
@@ -45,28 +77,6 @@ export function ProjectBody() {
       }
     ]
   };
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const formElements = event.target.elements;
-    const formData = {};
-
-    for (let i = 0; i < formElements.length; i++) {
-      const element = formElements[i];
-      if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
-        formData[element.name] = element.value;
-      }
-    }
-
-    const allFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
-
-    if (allFieldsFilled) {
-      console.log("Dados do formulário:", formData);
-    } else {
-      console.log("Por favor, preencha todos os campos do formulário.");
-    }
-  }
 
   return (
     <section className="project-body">
@@ -110,17 +120,55 @@ export function ProjectBody() {
 
           <form className="form" onSubmit={handleSubmit}>
             <div className="inputs">
-              <input type="text" name="name" placeholder="Nome completo" className="input" required />
-              <input type="email" name="email" placeholder="E-mail" className="input" required />
-              <input type="text" name="phone" placeholder="Telefone" className="input" required />
-              <input type="text" name="enterprises" placeholder="Nome do empreendimento" className="input" required />
+              <input
+                type="text"
+                placeholder="Nome completo"
+                className="input"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required />
+              <input
+                type="email"
+                placeholder="E-mail"
+                className="input"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required />
+              <input
+                type="text"
+                placeholder="Telefone"
+                className="input"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required />
+              <input
+                type="text"
+                placeholder="Nome do empreendimento"
+                className="input"
+                name="enterprises"
+                value={formData.enterprises}
+                onChange={handleChange}
+                required />
             </div>
-            <textarea name="message" id="" className="message" cols="30" rows="10" placeholder="Sua mensagem"></textarea>
+            <textarea
+              name="message"
+              id=""
+              className="message"
+              cols="30"
+              rows="10"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Sua mensagem"></textarea>
             <button className="action">Enviar <IoIosArrowForward /></button>
           </form>
         </div>
 
       </div>
+
+      <ToastContainer />
     </section>
   );
 }
