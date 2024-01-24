@@ -56,7 +56,7 @@ export const getAllWPFind = async (id) => {
 export const sendContact = async (params) => {
   try {
     // Passa os parâmetros no corpo da requisição
-    const req = await apiDash.post('send-contact.php', params);
+    const req = await apiDash.post('wp-json/contato/v1/enviar-email', params);
     return req;
   } catch (err) {
     console.error(err);

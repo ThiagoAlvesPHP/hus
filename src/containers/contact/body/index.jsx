@@ -42,8 +42,9 @@ export function ContactBody() {
     }
 
     let res = await sendContact(formData);
-
-    console.log('Dados do formulário:', formData, res);
+    if (res && res.data.email) {
+      toast.success("E-mail enviado com sucesso!", { closeOnClick: true });
+    }
   };
 
 
