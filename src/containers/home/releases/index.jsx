@@ -33,11 +33,28 @@ export function HomeReleases(props) {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: json.length >= 2 ? true : false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     className: "carousel",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: json.length >= 2 ? true : false,
+          slidesToScroll: 2,
+          infinite: json.length >= 2 ? true : false,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
   };
 
   return (

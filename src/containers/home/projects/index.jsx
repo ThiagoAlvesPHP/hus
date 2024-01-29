@@ -85,7 +85,9 @@ export function HomeProjects(props) {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          dots: false,
+          centerMode: true,
         }
       }
     ]
