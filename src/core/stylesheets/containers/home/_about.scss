@@ -158,11 +158,6 @@
         align-items: center;
         gap: 10px;
 
-        @include responsive($tablet) {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-        }
-
         .social-follow {
           padding: 20px;
           background-color: $orange;
@@ -190,6 +185,15 @@
 
           .icon {
             font-size: 75px;
+          }
+        }
+
+        @include responsive($tablet) {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+
+          .social-follow {
+            width: 100% !important;
           }
         }
       }

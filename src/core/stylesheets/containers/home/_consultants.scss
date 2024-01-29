@@ -13,7 +13,6 @@
   .container {
     max-width: $size_max_width;
     width: 100%;
-    padding: 0 20px;
 
     .box {
       display: flex;
@@ -21,7 +20,7 @@
       align-items: center;
       flex-direction: column;
       background-color: $orange;
-      padding: $size_title_desktop 0;
+      padding: $size_title_desktop 20px;
       border-radius: 20px;
 
       .title {
@@ -29,19 +28,19 @@
         margin-bottom: 10px;
         font-size: $size_title_desktop;
       }
-  
+
       .sub-title {
         color: $white;
         margin-bottom: 60px;
         padding: 0 10px;
       }
-  
+
       .actions {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 20px;
-  
+
         .link {
           display: flex;
           gap: 10px;
@@ -51,15 +50,15 @@
           text-decoration: none;
           border-radius: 8px;
           transition: all ease .8s;
-  
+
           &:hover {
             box-shadow: 0px 0px 6px $dark;
           }
-  
+
           small {
             font-size: 12px;
           }
-  
+
           p {
             color: $green;
             font-weight: 600;
@@ -72,7 +71,16 @@
           padding: 0 10px;
 
           .link {
-            width: 100%;
+            width: 80%;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 10px;
+
+            .texts {
+              display: flex;
+              flex-direction: column;
+              align-items: end;
+            }
           }
         }
       }
